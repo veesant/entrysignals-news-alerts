@@ -25,6 +25,6 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
         run: python newsmon.py

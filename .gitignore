@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.DS_Store
+test
+.env
+*.env
+test
+venv/
+*.log
+seen_globenewswire.json

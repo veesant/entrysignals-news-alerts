@@ -126,7 +126,7 @@ def format_alerts_html(items):
     <html>
     <body>
         <h3>EntrySignal Alerts</h3>
-        <h3>From: GlobeNewswire</h3>
+        <h1>From: GlobeNewswire</h1>
 
         <table style="
             border-collapse: collapse;

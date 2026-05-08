@@ -212,7 +212,10 @@ def send_email(subject, message, recipients):
             "to": [recipient],
             "subject": subject,
             "html": message,
-            "text": "EntrySignals News Alert"
+            "text": "Latest EntrySignals News alerts",
+            "headers": {
+                "List-Unsubscribe": "<mailto:unsubscribe@entrysignals.app>"
+            }
         })
 
     response = resend.Batch.send(emails)

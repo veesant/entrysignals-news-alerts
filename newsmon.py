@@ -204,8 +204,10 @@ def send_email(subject, message, recipients):
 
     resend.api_key = os.environ["RESEND_API_KEY"]
 
+    emails = []
+
     for recipient in recipients:
-        response = resend.Emails.send({
+        emails.append({
             "from": os.environ["EMAIL_FROM"],
             "to": [recipient],
             "subject": subject,
@@ -213,7 +215,9 @@ def send_email(subject, message, recipients):
             "text": "EntrySignals News Alert"
         })
 
-        print(f"Email sent to {recipient}. Response: {response}")
+    response = resend.Batch.send(emails)
+
+    print(f"Batch email sent to {len(recipients)} recipient(s). Response: {response}")
 
 
 def send_sms(message):

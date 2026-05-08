@@ -126,7 +126,7 @@ def format_alerts_html(items):
     <html>
     <body>
         <h3>EntrySignal Alerts</h3>
-        <h1>From: GlobeNewswire</h1>
+        <h5>From: GlobeNewswire</h5>
 
         <table style="
             border-collapse: collapse;
@@ -192,13 +192,10 @@ def is_relevant(text):
 
 def send_email(subject, message, recipients):
     required = ["RESEND_API_KEY", "EMAIL_FROM"]
-
     missing = [key for key in required if not os.getenv(key)]
 
     if missing:
-        print(
-            f"Email skipped. Missing environment variables: {missing}"
-        )
+        print(f"Email skipped. Missing environment variables: {missing}")
         return
 
     if not recipients:
@@ -207,14 +204,16 @@ def send_email(subject, message, recipients):
 
     resend.api_key = os.environ["RESEND_API_KEY"]
 
-    response = resend.Emails.send({
-        "from": os.environ["EMAIL_FROM"],
-        "to": recipients,
-        "subject": subject,
-        "html": message,
-    })
+    for recipient in recipients:
+        response = resend.Emails.send({
+            "from": os.environ["EMAIL_FROM"],
+            "to": [recipient],
+            "subject": subject,
+            "html": message,
+            "text": "EntrySignals News Alert"
+        })
 
-    print(f"Email sent via Resend. Response: {response}")
+        print(f"Email sent to {recipient}. Response: {response}")
 
 
 def send_sms(message):
